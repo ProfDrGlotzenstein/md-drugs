@@ -61,7 +61,7 @@ function Cornersell()
     lib.requestAnimDict("rcmme_tracey1")
     TaskStartScenarioInPlace(targ, "WORLD_HUMAN_STAND_IMPATIENT_UPRIGHT", 0, false) FreezeEntityPosition(targ, true)
     AddMultiModel(data.ped, {
-        { label = string.format(Lang.targets.CornerSell.sell, data.amount, GetLabel(data.item), data.price), icon ="fa-solid fa-money-bill",
+        { label = string.format(Lang.targets.CornerSell.sell, data.amount, GetLabel(data.item), data.price, data.price / data.amount), icon ="fa-solid fa-money-bill",
             action =   function() sellDrug(data.item, data.amount, data.price, targ) end,
             canInteract = function()
                 if not targbusy then return true end end,

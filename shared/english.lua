@@ -18,7 +18,7 @@ Lang.targets = {
         chop = 'Chop all of your Coca Leaves (Press E to Abort)',
     },
     CornerSell = {
-        sell = 'Sell %s Of %s For $%s',
+        sell = 'Sell %s Of %s For $%s (%s per Piece)',
         deny = 'Deny Price'
     },
     crack = {
