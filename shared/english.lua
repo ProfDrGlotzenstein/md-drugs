@@ -8,7 +8,14 @@ Lang.targets = {
         enter = 'Enter Building',
         exit = 'Exit Building',
         chop = 'Chop Coca Leaves',
-        
+    },
+    cokeMulti = {
+        pick = 'Pick Cocaine',
+        cut = 'Cut all of your Cocaine (Press E to Abort)',
+        bag = 'Bag all of your Cocaine (Press E to Abort)',
+        enter = 'Enter Building',
+        exit = 'Exit Building',
+        chop = 'Chop all of your Coca Leaves (Press E to Abort)',
     },
     CornerSell = {
         sell = 'Sell %s Of %s For $%s',

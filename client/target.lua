@@ -4,7 +4,11 @@ CreateThread(function()
 	if not config then print('Yo Dawg You Broke Your Locations.lua') return end
 	AddBoxZoneSingle('telecokein', 	     config.singleSpot.CokeTeleIn, 	{action = function()tele(config.singleSpot.CokeTeleOut)end,  icon = 'fa-solid fa-door-open', label = Lang.targets.coke.enter}) -- coke
 	AddBoxZoneSingle('telecokeout', 	 config.singleSpot.CokeTeleOut, {action = function()tele(config.singleSpot.CokeTeleIn) end,  icon = "fa-solid fa-door-closed", label = Lang.targets.coke.exit}) -- coke
-	AddBoxZoneMulti('makepowder', 		 config.MakePowder, 	        {event = "md-drugs:client:makepowder",			  icon = "fa-solid fa-scissors", label = Lang.targets.coke.chop}) -- coke
+	if Config.MultiCrafting then
+        AddBoxZoneMulti('makepowder', 		 config.MakePowder, 	        {event = "md-drugs:client:multi",			  icon = "fa-solid fa-scissors", label = Lang.targets.cokeMulti.chop}) -- coke
+    else
+    	AddBoxZoneMulti('makepowder', 		 config.MakePowder, 	        {event = "md-drugs:client:makepowder",			  icon = "fa-solid fa-scissors", label = Lang.targets.coke.chop}) -- coke multi
+    end
 	AddBoxZoneMulti('steallysergic', 	 config.lysergicacid, 	        {event = "md-drugs:client:getlysergic",			  icon = "fa-solid fa-prescription-bottle", label = Lang.targets.lsd.lys}) -- lsd
 	AddBoxZoneMulti('stealdiethylamide', config.diethylamide, 	        {event = "md-drugs:client:getdiethylamide",		  icon = "fa-solid fa-prescription-bottle", label = Lang.targets.lsd.die}) -- lsd
 	AddBoxZoneMulti('gettabs', 			 config.gettabs, 	            {event = "md-drugs:client:buytabs",				  icon = "fa-solid fa-eye-dropper", label = Lang.targets.lsd.buyt}) -- lsd

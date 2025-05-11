@@ -8,6 +8,10 @@ local function pick(loc)
     return true
 end
 
+function IsCancelPressed()
+    return IsControlJustPressed(0, 38)
+end
+
 RegisterNetEvent('coke:respawnCane', function(loc)
     local v = GlobalState.CocaPlant[loc]
     local hash = GetHashKey(v.model)
@@ -52,6 +56,18 @@ RegisterNetEvent("md-drugs:client:makepowder", function(data)
 	TriggerServerEvent("md-drugs:server:makepowder", data.data)
 end)
 
+RegisterNetEvent("md-drugs:client:makepowdermulti", function(data)
+    while true do
+        if IsCancelPressed() then --Taste E zum Abbrechen
+            break
+        end
+        if not ItemCheck('coca_leaf') then break end
+        if not progressbar(Lang.Coke.makepow, 4000, 'uncuff') then break end
+        TriggerServerEvent("md-drugs:server:makepowder", data.data)
+        wait(1000)
+	end
+end)
+
 RegisterNetEvent("md-drugs:client:cutcokeone", function(data)
     if not ItemCheck('bakingsoda') then return end
 	cuttingcoke = true
@@ -62,6 +78,25 @@ RegisterNetEvent("md-drugs:client:cutcokeone", function(data)
     end
 	TriggerServerEvent("md-drugs:server:cutcokeone", data.data)
 	cuttingcoke = nil
+end)
+
+RegisterNetEvent("md-drugs:client:cutcokeonemulti", function(data)
+    while true do
+        if IsCancelPressed() then --Taste E zum Abbrechen
+            break
+        end
+        if not ItemCheck('bakingsoda') then break end
+        cuttingcoke = true
+        if Config.FancyCokeAnims then
+            CutCoke()
+        else
+             if not progressbar(Lang.Coke.cutting, 5000, 'uncuff') then cuttingcoke = nil break end
+        end
+        TriggerServerEvent("md-drugs:server:cutcokeone", data.data)
+        cuttingcoke = nil
+        wait(1000)
+    end
+
 end)
 
 RegisterNetEvent("md-drugs:client:bagcoke", function(data) 
@@ -76,15 +111,48 @@ RegisterNetEvent("md-drugs:client:bagcoke", function(data)
 	baggingcoke = nil
 end)
 
+RegisterNetEvent("md-drugs:client:bagcokemulti", function(data)
+    while true do
+        if IsCancelPressed() then --Taste E zum Abbrechen
+            break
+        end
+        if not ItemCheck('empty_weed_bag') then break end
+        baggingcoke = true
+        if Config.FancyCokeAnims then
+            BagCoke()
+        else
+            if not progressbar(Lang.Coke.bagging, 5000, 'uncuff') then baggingcoke = nil break end
+        end
+        TriggerServerEvent("md-drugs:server:bagcoke", data.data)
+        baggingcoke = nil
+        wait(1000)
+	end
+end)
+
 CreateThread(function()
     local config = lib.callback.await('md-drugs:server:getLocs', false)
-    if Config.FancyCokeAnims == false then 
-        AddBoxZoneMulti('cuttcoke', config.CuttingCoke,  {	type = "client",event = "md-drugs:client:cutcokeone",	icon = "fa-solid fa-mortar-pestle",  label = Lang.targets.coke.cut}) 
-        AddBoxZoneMulti('baggcoke', config.BaggingCoke,  {	type = "client",event = "md-drugs:client:bagcoke",	    icon = "fa-solid fa-sack-xmark",  label = Lang.targets.coke.bag})
+    if Config.MultiCrafting == false then
+        if Config.FancyCokeAnims == false then
+            AddBoxZoneMulti('cuttcoke', config.CuttingCoke,  {	type = "client",event = "md-drugs:client:cutcokeone",	icon = "fa-solid fa-mortar-pestle",  label = Lang.targets.coke.cut})
+            AddBoxZoneMulti('baggcoke', config.BaggingCoke,  {	type = "client",event = "md-drugs:client:bagcoke",	    icon = "fa-solid fa-sack-xmark",  label = Lang.targets.coke.bag})
+        else
+            AddBoxZoneSingle('cutcoke', config.singleSpot.cutcoke,
+                { data = config.singleSpot.cutcoke,  type = "client", event = "md-drugs:client:cutcokeone", icon = "fa-solid fa-mortar-pestle", label = Lang.targets.coke.cut, canInteract = function() if cuttingcoke == nil and baggingcoke == nil then return true end end })
+            AddBoxZoneSingle('bagcokepowder', config.singleSpot.bagcokepowder,
+                { data = config.singleSpot.bagcokepowder, type = "client", event = "md-drugs:client:bagcoke",    icon = "fa-solid fa-sack-xmark", label = Lang.targets.coke.bag, canInteract = function() if baggingcoke == nil and cuttingcoke == nil then return true end end })
+        end
     else
-        AddBoxZoneSingle('cutcoke', config.singleSpot.cutcoke,
-		    { data = config.singleSpot.cutcoke,  type = "client", event = "md-drugs:client:cutcokeone", icon = "fa-solid fa-mortar-pestle", label = Lang.targets.coke.cut, canInteract = function() if cuttingcoke == nil and baggingcoke == nil then return true end end })
-        AddBoxZoneSingle('bagcokepowder', config.singleSpot.bagcokepowder,
-		    { data = config.singleSpot.bagcokepowder, type = "client", event = "md-drugs:client:bagcoke",    icon = "fa-solid fa-sack-xmark", label = Lang.targets.coke.bag, canInteract = function() if baggingcoke == nil and cuttingcoke == nil then return true end end })
+        if Config.MultiCrafting == false then
+            if Config.FancyCokeAnims == false then
+                AddBoxZoneMulti('cuttcoke', config.CuttingCoke,  {	type = "client",event = "md-drugs:client:cutcokeonemulti",	icon = "fa-solid fa-mortar-pestle",  label = Lang.targets.coke.cut})
+                AddBoxZoneMulti('baggcoke', config.BaggingCoke,  {	type = "client",event = "md-drugs:client:bagcokemulti",	    icon = "fa-solid fa-sack-xmark",  label = Lang.targets.coke.bag})
+            else
+                AddBoxZoneSingle('cutcoke', config.singleSpot.cutcoke,
+                    { data = config.singleSpot.cutcoke,  type = "client", event = "md-drugs:client:cutcokeonemulti", icon = "fa-solid fa-mortar-pestle", label = Lang.targets.cokeMulti.cut, canInteract = function() if cuttingcoke == nil and baggingcoke == nil then return true end end })
+                AddBoxZoneSingle('bagcokepowder', config.singleSpot.bagcokepowder,
+                    { data = config.singleSpot.bagcokepowder, type = "client", event = "md-drugs:client:bagcokemulti",    icon = "fa-solid fa-sack-xmark", label = Lang.targets.cokeMulti.bag, canInteract = function() if baggingcoke == nil and cuttingcoke == nil then return true end end })
+            end
+        else
+        end
     end
 end)
