@@ -64,7 +64,7 @@ RegisterNetEvent("md-drugs:client:makepowdermulti", function(data)
         if not ItemCheck('coca_leaf') then break end
         if not progressbar(Lang.Coke.makepow, 4000, 'uncuff') then break end
         TriggerServerEvent("md-drugs:server:makepowder", data.data)
-        wait(1000)
+        Wait(1000)
 	end
 end)
 
@@ -94,7 +94,7 @@ RegisterNetEvent("md-drugs:client:cutcokeonemulti", function(data)
         end
         TriggerServerEvent("md-drugs:server:cutcokeone", data.data)
         cuttingcoke = nil
-        wait(1000)
+        Wait(1000)
     end
 
 end)
@@ -125,7 +125,7 @@ RegisterNetEvent("md-drugs:client:bagcokemulti", function(data)
         end
         TriggerServerEvent("md-drugs:server:bagcoke", data.data)
         baggingcoke = nil
-        wait(1000)
+        Wait(1000)
 	end
 end)
 

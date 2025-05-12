@@ -7,10 +7,10 @@ local recipe = {
             tier2 = {take = {coca_leaf = 1}, give = {cokestagetwo = 1}},
             tier3 = {take = {coca_leaf = 1}, give = {cokestagethree = 1}},
        },
-       cutcoke = {
-            tier1 = {take = {coke = 1,           bakingsoda = 1}, give = {loosecoke = 1}},
-            tier2 = {take = {cokestagetwo = 1,   bakingsoda = 1}, give = {loosecokestagetwo = 1}},
-            tier3 = {take = {cokestagethree = 1, bakingsoda = 1}, give = {loosecokestagethree = 1}},
+    cutcoke = {
+            tier1 = {take = {coke = 1,           bakingsoda = 1}, give = {loosecoke = 2}},
+            tier2 = {take = {cokestagetwo = 1,   bakingsoda = 1}, give = {loosecokestagetwo = 3}},
+            tier3 = {take = {cokestagethree = 1, bakingsoda = 1}, give = {loosecokestagethree = 4}},
        },
        bagcoke = {
             tier1 = {take = {loosecoke = 1,             empty_weed_bag = 1}, give = {cokebaggy = 1}},
