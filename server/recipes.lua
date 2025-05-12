@@ -21,8 +21,8 @@ local recipe = {
     crack = {
         cookcrack = {
              tier1 = {take = {loosecoke = 1,          bakingsoda = 1}, give = {crackrock = 1}},
-             tier2 = {take = {loosecokestagetwo = 1,  bakingsoda = 1}, give = {crackrockstagetwo = 1}},
-             tier3 = {take = {loosecokestagethree = 1,bakingsoda = 1}, give = {crackrockstagethree = 1}},
+             tier2 = {take = {loosecokestagetwo = 1,  bakingsoda = 1}, give = {crackrockstagetwo = 2}},
+             tier3 = {take = {loosecokestagethree = 1,bakingsoda = 1}, give = {crackrockstagethree = 3}},
         },
         bagcrack = {
              tier1 = {take = {crackrock = 1,           empty_weed_bag = 1}, give = {baggedcracked = 1}},
@@ -38,8 +38,8 @@ local recipe = {
         },
         cutheroin = {
             tier1 = {take = {heroin = 1,            bakingsoda = 1}, give = {heroincut = 1}},
-            tier2 = {take = {heroinstagetwo = 1,    bakingsoda = 1}, give = {heroincutstagetwo = 1}},
-            tier3 = {take = {heroinstagethree = 1,  bakingsoda = 1}, give = {heroincutstagethree = 1}},
+            tier2 = {take = {heroinstagetwo = 1,    bakingsoda = 1}, give = {heroincutstagetwo = 2}},
+            tier3 = {take = {heroinstagethree = 1,  bakingsoda = 1}, give = {heroincutstagethree = 3}},
         },
         fillvial = {
             tier1 = {take = {heroincut = 1,            emptyvial = 1}, give = {heroinvial = 1}},
