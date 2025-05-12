@@ -142,17 +142,14 @@ CreateThread(function()
                 { data = config.singleSpot.bagcokepowder, type = "client", event = "md-drugs:client:bagcoke",    icon = "fa-solid fa-sack-xmark", label = Lang.targets.coke.bag, canInteract = function() if baggingcoke == nil and cuttingcoke == nil then return true end end })
         end
     else
-        if Config.MultiCrafting == true then
-            if Config.FancyCokeAnims == false then
-                AddBoxZoneMulti('cuttcoke', config.CuttingCoke,  {	type = "client",event = "md-drugs:client:cutcokeonemulti",	icon = "fa-solid fa-mortar-pestle",  label = Lang.targets.coke.cut})
-                AddBoxZoneMulti('baggcoke', config.BaggingCoke,  {	type = "client",event = "md-drugs:client:bagcokemulti",	    icon = "fa-solid fa-sack-xmark",  label = Lang.targets.coke.bag})
-            else
-                AddBoxZoneSingle('cutcoke', config.singleSpot.cutcoke,
-                    { data = config.singleSpot.cutcoke,  type = "client", event = "md-drugs:client:cutcokeonemulti", icon = "fa-solid fa-mortar-pestle", label = Lang.targets.cokeMulti.cut, canInteract = function() if cuttingcoke == nil and baggingcoke == nil then return true end end })
-                AddBoxZoneSingle('bagcokepowder', config.singleSpot.bagcokepowder,
-                    { data = config.singleSpot.bagcokepowder, type = "client", event = "md-drugs:client:bagcokemulti",    icon = "fa-solid fa-sack-xmark", label = Lang.targets.cokeMulti.bag, canInteract = function() if baggingcoke == nil and cuttingcoke == nil then return true end end })
-            end
+        if Config.FancyCokeAnims == false then
+            AddBoxZoneMulti('cuttcoke', config.CuttingCoke,  {	type = "client",event = "md-drugs:client:cutcokeonemulti",	icon = "fa-solid fa-mortar-pestle",  label = Lang.targets.coke.cut})
+            AddBoxZoneMulti('baggcoke', config.BaggingCoke,  {	type = "client",event = "md-drugs:client:bagcokemulti",	    icon = "fa-solid fa-sack-xmark",  label = Lang.targets.coke.bag})
         else
+            AddBoxZoneSingle('cutcoke', config.singleSpot.cutcoke,
+                { data = config.singleSpot.cutcoke,  type = "client", event = "md-drugs:client:cutcokeonemulti", icon = "fa-solid fa-mortar-pestle", label = Lang.targets.cokeMulti.cut, canInteract = function() if cuttingcoke == nil and baggingcoke == nil then return true end end })
+            AddBoxZoneSingle('bagcokepowder', config.singleSpot.bagcokepowder,
+                { data = config.singleSpot.bagcokepowder, type = "client", event = "md-drugs:client:bagcokemulti",    icon = "fa-solid fa-sack-xmark", label = Lang.targets.cokeMulti.bag, canInteract = function() if baggingcoke == nil and cuttingcoke == nil then return true end end })
         end
     end
 end)
