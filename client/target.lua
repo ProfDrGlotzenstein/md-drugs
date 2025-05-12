@@ -5,7 +5,7 @@ CreateThread(function()
 	AddBoxZoneSingle('telecokein', 	     config.singleSpot.CokeTeleIn, 	{action = function()tele(config.singleSpot.CokeTeleOut)end,  icon = 'fa-solid fa-door-open', label = Lang.targets.coke.enter}) -- coke
 	AddBoxZoneSingle('telecokeout', 	 config.singleSpot.CokeTeleOut, {action = function()tele(config.singleSpot.CokeTeleIn) end,  icon = "fa-solid fa-door-closed", label = Lang.targets.coke.exit}) -- coke
 	if Config.MultiCrafting then
-        AddBoxZoneMulti('makepowder', 		 config.MakePowder, 	        {event = "md-drugs:client:multi",			  icon = "fa-solid fa-scissors", label = Lang.targets.cokeMulti.chop}) -- coke
+        AddBoxZoneMulti('makepowder', 		 config.MakePowder, 	        {event = "md-drugs:client:makepowdermulti",			  icon = "fa-solid fa-scissors", label = Lang.targets.cokeMulti.chop}) -- coke
     else
     	AddBoxZoneMulti('makepowder', 		 config.MakePowder, 	        {event = "md-drugs:client:makepowder",			  icon = "fa-solid fa-scissors", label = Lang.targets.coke.chop}) -- coke multi
     end

@@ -142,7 +142,7 @@ CreateThread(function()
                 { data = config.singleSpot.bagcokepowder, type = "client", event = "md-drugs:client:bagcoke",    icon = "fa-solid fa-sack-xmark", label = Lang.targets.coke.bag, canInteract = function() if baggingcoke == nil and cuttingcoke == nil then return true end end })
         end
     else
-        if Config.MultiCrafting == false then
+        if Config.MultiCrafting == true then
             if Config.FancyCokeAnims == false then
                 AddBoxZoneMulti('cuttcoke', config.CuttingCoke,  {	type = "client",event = "md-drugs:client:cutcokeonemulti",	icon = "fa-solid fa-mortar-pestle",  label = Lang.targets.coke.cut})
                 AddBoxZoneMulti('baggcoke', config.BaggingCoke,  {	type = "client",event = "md-drugs:client:bagcokemulti",	    icon = "fa-solid fa-sack-xmark",  label = Lang.targets.coke.bag})
