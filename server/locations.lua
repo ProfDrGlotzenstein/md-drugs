@@ -38,16 +38,16 @@ local Target = {
         {loc = vector3(-1366.32, -334.40, 44.44), l = 1.0, w = 1.0, rot = 45.0, gang = ""},
     },
     isosafrole = { -- where to steal isosafrole
-        {loc = vector3(844.39, -902.92, 25.42), l = 1.0, w = 1.0, rot = 45.0, gang = ""},
+        {loc = vector3(879.35, -946.56, 27.86), l = 1.0, w = 1.0, rot = 45.0, gang = ""},
     },
     mdp2p = { -- where to steal mdp2p
-        {loc = vector3(844.4, -898.79, 25.23), l = 1.0, w = 1.0, rot = 45.0, gang = ""},
+        {loc = vector3(880.87, -954.12, 27.86), l = 1.0, w = 1.0, rot = 45.0, gang = ""},
     },
     rawxtcloc = { --  where to combine the 2 ingridents to make raw xtc
-        {loc = vector3(844.71, -910.33, 25.37), l = 1.0, w = 1.0, rot = 45.0, gang = ""},
+        {loc = vector3(881.19, -942.67, 27.86), l = 1.0, w = 1.0, rot = 45.0, gang = ""},
     },
     stamp = {  --  where to stamp pills
-        {loc = vector3(844.71, -900.56, 25.43), l = 1.0, w = 1.0, rot = 45.0, gang = ""},
+        {loc = vector3(881.05, -967.35, 27.86), l = 1.0, w = 1.0, rot = 45.0, gang = ""},
     },
     FillPrescription = { -- where to fill out your prescription
         {loc = vector3(2855.62, 4446.73, 48.53), l = 1.0, w = 1.0, rot = 45.0, gang = ""},
@@ -57,11 +57,11 @@ local Target = {
         bagcokepowder = vector3(1090.28, -3195.65, -39.19),
         CokeTeleIn = vector3(198.16, -1276.92, 29.33), -- where you target to go inside coke
         CokeTeleOut =  vector3(1088.81, -3187.57, -38.99), -- where you target to leave coke
-        buylsdlabkit = vector4(2598.47, 5033.06, 105.86, 283.51), --  buy lab kit for lsd
+        buylsdlabkit = vector4(2593.92, 5043.68, 44.89, 117.09), --  buy lab kit for lsd
         buyheroinlabkit = vector4(-1358.77, -339.12, 43.92, 302.13), --  buy lab kit for heroin
-        buypress = vector3(845.82, -884.79, 25.18), --  buy lab kit for xtc
+        buypress = vector3(844.72, -903.06, 25.25), --  buy lab kit for xtc
         DryOut = vector3(2638.22, 4237.93, 44.78), -- Place to dry out mescaline into usuable drug
-        SyrupVendor = vector4(365.21, -578.77, 39.30, 347.23), -- where the mission ped starts
+        SyrupVendor = vector4(500.04, -521.21, 24.88, 91.07), -- where the mission ped starts
         weedTelein = vector3(244.74, 374.54, 105.74), -- where you target to tele in
         weedTeleout = vector3(1066.31, -3183.36, -39.16),  -- where you target to tele out
         MakeButter = vector3(1045.48, -3198.49, -38.22), -- where you make cannabutter and baked edibles

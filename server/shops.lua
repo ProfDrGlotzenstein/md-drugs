@@ -3,7 +3,7 @@ local QBCore = exports['qb-core']:GetCoreObject()
 local stores = {
 	travel = {
 		{name = "tab_paper", 	   price = 50, 	amount = 50,	},
-		{name = "bakingsoda", 	   price = 25, 	amount = 50, 	},
+		{name = "bakingsoda", 	   price = 1, 	amount = 200, 	},
 		{name = "isosafrole", 	   price = 25, 	amount = 50, 	},
 		{name = "mdp2p", 		   price = 25, 	amount = 50, 	},
 		{name = "lysergic_acid",   price = 25, 	amount = 50, 	},
