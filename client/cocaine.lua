@@ -85,7 +85,11 @@ RegisterNetEvent("md-drugs:client:cutcokeonemulti", function(data)
         if IsCancelPressed() then --Taste E zum Abbrechen
             break
         end
-        if not ItemCheck('bakingsoda') then break end
+        if not ItemCheck('bakingsoda')
+        and (not ItemCheck('coke')
+            or not ItemCheck('cokestagetwo')
+            or not ItemCheck('cokestagethree'))
+                then break end
         cuttingcoke = true
         if Config.FancyCokeAnims then
             CutCoke()
