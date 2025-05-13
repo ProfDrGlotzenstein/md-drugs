@@ -58,6 +58,7 @@ end)
 
 RegisterNetEvent("md-drugs:client:makepowdermulti", function(data)
     while true do
+        Wait(1)
         if IsCancelPressed() then --Taste E zum Abbrechen
             break
         end
@@ -82,6 +83,7 @@ end)
 
 RegisterNetEvent("md-drugs:client:cutcokeonemulti", function(data)
     while true do
+        Wait(1)
         if IsCancelPressed() then --Taste E zum Abbrechen
             break
         end
@@ -114,6 +116,7 @@ end)
 
 RegisterNetEvent("md-drugs:client:bagcokemulti", function(data)
     while true do
+        Wait(1)
         if IsCancelPressed() then --Taste E zum Abbrechen
             break
         end
