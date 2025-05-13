@@ -85,22 +85,19 @@ RegisterNetEvent("md-drugs:client:cutcokeonemulti", function(data)
         if IsCancelPressed() then --Taste E zum Abbrechen
             break
         end
-        if not ItemCheck('bakingsoda')
-        and (not ItemCheck('coke')
-            or not ItemCheck('cokestagetwo')
-            or not ItemCheck('cokestagethree'))
-                then break end
-        cuttingcoke = true
-        if Config.FancyCokeAnims then
-            CutCoke()
-        else
-             if not progressbar(Lang.Coke.cutting, 5000, 'uncuff') then cuttingcoke = nil break end
-        end
-        TriggerServerEvent("md-drugs:server:cutcokeone", data.data)
-        cuttingcoke = nil
-        Wait(1000)
+        if not ItemCheck('bakingsoda') then break end
+        if ItemCheck('coke') or ItemCheck('cokestagetwo') or ItemCheck('cokestagethree') then
+            cuttingcoke = true
+            if Config.FancyCokeAnims then
+                CutCoke()
+            else
+                 if not progressbar(Lang.Coke.cutting, 5000, 'uncuff') then cuttingcoke = nil break end
+            end
+            TriggerServerEvent("md-drugs:server:cutcokeone", data.data)
+            cuttingcoke = nil
+            Wait(1000)
+        else break end
     end
-
 end)
 
 RegisterNetEvent("md-drugs:client:bagcoke", function(data) 
@@ -121,15 +118,17 @@ RegisterNetEvent("md-drugs:client:bagcokemulti", function(data)
             break
         end
         if not ItemCheck('empty_weed_bag') then break end
-        baggingcoke = true
-        if Config.FancyCokeAnims then
-            BagCoke()
-        else
-            if not progressbar(Lang.Coke.bagging, 5000, 'uncuff') then baggingcoke = nil break end
-        end
-        TriggerServerEvent("md-drugs:server:bagcoke", data.data)
-        baggingcoke = nil
-        Wait(1000)
+        if ItemCheck('loosecoke') or ItemCheck('loosecokestagetwo') or ItemCheck('loosecokestagethree') then
+            baggingcoke = true
+            if Config.FancyCokeAnims then
+                BagCoke()
+            else
+                if not progressbar(Lang.Coke.bagging, 5000, 'uncuff') then baggingcoke = nil break end
+            end
+            TriggerServerEvent("md-drugs:server:bagcoke", data.data)
+            baggingcoke = nil
+            Wait(1000)
+        else break end
 	end
 end)
 
