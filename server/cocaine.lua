@@ -116,10 +116,10 @@ RegisterServerEvent('md-drugs:server:bagcoke', function(num)
                 tier = v.tier 
             end
         end
-        if not GetRecipe(src, 'cocaine', 'bagcoke', tier) then return end
+        if not GetRecipe(src, 'cocaine', 'bagcoke', tier, Config.CraftingMultiplier) then return end
         AddRep(src, 'coke')
     else
-        if not GetRecipe(src, 'cocaine', 'bagcoke', 'tier1') then return end
+        if not GetRecipe(src, 'cocaine', 'bagcoke', 'tier1', Config.CraftingMultiplier) then return end
     end
 end)
 

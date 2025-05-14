@@ -7,6 +7,7 @@ Config.StupidassNewQbItemName = true -- true if you have updated your items.lua 
 Config.RequestModelTime = 30000 -- if you need more time than this, uhhhh wow
 Config.FancyCokeAnims = true -- if you want multi location this needs to be false
 Config.MultiCrafting = true
+Config.CraftingMultiplier = 10
 
 Config.Joblock = false -- if you want weed to be a job
 Config.weedjob = "" -- what the job name is

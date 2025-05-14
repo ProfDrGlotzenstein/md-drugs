@@ -135,32 +135,75 @@ local recipe = {
     }
 }
 
-function GetRecipe(source, type, method, tier)
-    local src = source
-    local Player = getPlayer(source) 
-    local has = 0
-    local need = 0 
-    for k, v in pairs (recipe[type][method][tier].take) do 
-        local item = Player.Functions.GetItemByName(k) 
-        if item and item.amount >= v then 
-            has = has + 1
-        else
-            Notifys(src, ' You Need ' .. v .. ' Of '  .. GetLabels(k) .. ' To Do This', 'error')
+function GetRecipe(source, type, method, tier, requestedMultiplier)
+    local src       = source
+    local Player    = getPlayer(src)
+    local recipeDef = recipe[type][method][tier]
+
+    -- Default-Multiplikator: 1
+    local multiplier = requestedMultiplier or 1
+
+    -- 1) Ermittle max. Multiplier basierend auf Vorrat
+    local maxItemAmount = math.huge
+    for itemName, needPerRun in pairs(recipeDef.take) do
+        local item = Player.Functions.GetItemByName(itemName)
+        local have = item and item.amount or 0
+        local canDo = math.floor(have / needPerRun)
+        if canDo < maxItemAmount then
+            maxItemAmount = canDo
         end
-        need = need + 1
     end
-    if has == need then 
-        for k, v in pairs (recipe[type][method][tier].take) do
-            RemoveItem(src, k, v) 
-        end
-        for k,v in pairs (recipe[type][method][tier].give) do
-            AddItem(src, k, v) 
-            Log(GetName(src) .. ' Made ' .. GetLabels(k) .. '!', 'drugMaking')
-        end  
-        return true
-    else
+
+    -- Wenn gar nichts möglich ist, abbrechen
+    if maxItemAmount == 0 then
+        Notifys(src, "You don't have enough materials.", "error")
         return false
     end
+
+    -- Tatsächlichen Multiplier auf vorhandenes Limit reduzieren
+    if multiplier > maxItemAmount then
+        multiplier = maxItemAmount
+        Notifys(src, ("Only amount %d possible with your current items."):format(multiplier), "error")
+    end
+
+    -- 2) Prüfen, ob mult Durchläufe möglich sind
+    --    (kann redundant sein, da wir maxMult bestimmt haben,
+    --     aber so stellst du Fehlerfreiheit sicher)
+    for itemName, needPerRun in pairs(recipeDef.take) do
+        local item = Player.Functions.GetItemByName(itemName)
+        local have = item and item.amount or 0
+        if have < needPerRun * multiplier then
+            Notifys(src,
+                ("You need %d of %s but only have %d"):format(
+                    needPerRun * multiplier,
+                    GetLabels(itemName),
+                    have
+                ),
+                "error"
+            )
+            return false
+        end
+    end
+
+    -- 3) Abziehen und Hinzufügen
+    for itemName, needPerRun in pairs(recipeDef.take) do
+        RemoveItem(src, itemName, needPerRun * multiplier)
+    end
+
+    for itemName, givePerRun in pairs(recipeDef.give) do
+        AddItem   (src, itemName, givePerRun * multiplier)
+        Log(
+            GetName(src)
+            .. " Made "
+            .. GetLabels(itemName)
+            .. " x"
+            .. (givePerRun * multiplier)
+            .. "!",
+            "drugMaking"
+        )
+    end
+
+    return true
 end
 
 lib.callback.register('md-drugs:server:GetRecipe', function(source, type, cat)
