@@ -20,8 +20,8 @@ Config.PoliceCount = 0 -- Amount of police required
 Config.PoliceAlertOxy = 60 -- This is a % out of 100 to alert police
 
 ----------------------------------- TierSystem levels ** ONLY IN USE IF CONFIG.TIERSYTEM IS TRUE
-Config.Tier1 = 100 -- amount to hit for level 2
-Config.Tier2 = 300 -- amount to hit for level 3
+Config.Tier1 = 2000 -- amount to hit for level 2
+Config.Tier2 = 5000 -- amount to hit for level 3
 
 ---------------------------------- BRIDGE
 Config.progressbartype = 'qb' -- either 'qb', 'oxcir', 'oxbar'
