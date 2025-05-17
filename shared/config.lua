@@ -16,7 +16,7 @@ Config.MethHeist = true
 Config.SuccessfulChance = 90 --- this is the chance of a Success wholesale 1-100
 Config.AlertPoliceWholesale = 80 -- 1-100 of how often it will alert police
 Config.WholesaleTimeout = 600 -- time in seconds to get to the location
-Config.PoliceCount = 0 -- Amount of police required
+Config.PoliceCount = 1 -- Amount of police required
 Config.PoliceAlertOxy = 60 -- This is a % out of 100 to alert police
 
 ----------------------------------- TierSystem levels ** ONLY IN USE IF CONFIG.TIERSYTEM IS TRUE
